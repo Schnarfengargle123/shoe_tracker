@@ -1,125 +1,216 @@
 import 'package:flutter/material.dart';
 
+class Shoe {
+  int id;
+  String model;
+  String image;
+
+  Shoe(this.id, this.model, this.image);
+
+  @override
+  String toString() {
+    return '{ ${this.id}, ${this.model}}';
+  }
+}
+
 void main() {
   runApp(const MyApp());
+
+  // const List shoes = [];
+  // shoes.add(Shoe(1, 'adidas Adizero Adios Pro 3',
+  //     '${shoeImagePath}/Adidas_Adizero_Adios_Pro_3.png'));
 }
+
+// const List<Map<String, String>> shoes = [
+//   { id: 1, model: 'adidas Adizero Adios Pro 3', image: `${shoeImagePath}/Adidas_Adizero_Adios_Pro_3.png` },
+//     { id: 2, model: 'ASICS Metaspeed Sky+', image: `${shoeImagePath}/Asics_Metaspeed_Sky+.png` },
+//     { id: 3, model: 'Brooks Hyperion Elite 3', image: `${shoeImagePath}/Brooks_Hyperion_Elite_3.png` },
+//     { id: 4, model: 'HOKA Rocket X 2', image: `${shoeImagePath}/Hoka_Rocket_X_2.png` },
+//     { id: 5, model: 'Mizuno Wave Rebellion Pro', image: `${shoeImagePath}/Mizuno_Wave_Rebellion_Pro.png` },
+//     { id: 6, model: 'new balance FuelCell SC Elite V3', image: `${shoeImagePath}/New_Balance_FuelCell_SC_Elite_V3.png` },
+//     { id: 7, model: 'Nike ZoomX Vaporfly NEXT% 3', image: `${shoeImagePath}/Nike_ZoomX_Vaporfly_NEXT_3.png` },
+//     { id: 8, model: 'on Cloudboom Echo 3', image: `${shoeImagePath}/on_Cloudboom_Echo_3.png` },
+//     { id: 9, model: 'PUMA Deviate Nitro Elite 2', image: `${shoeImagePath}/PUMA_Deviate_Nitro_Elite_2.png` },
+//     { id: 10, model: 'Saucony Endorphin Pro 3', image: `${shoeImagePath}/Saucony_Endorphin_Pro_3.png` }
+//     ];
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const ShoeTracker(title: 'Welcome to Shoe Tracker!'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+// class ShoeTracker extends StatefulWidget {
+//   const ShoeTracker(
+//       {super.key,
+//       required this.title,
+//       required this.selectedShoe,
+//       required this.currentShoe,
+//       required this.currentShoeSlot,
+//       required this.userShoeSlots});
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
+//   final String title;
+//   final String selectedShoe;
+//   final Object currentShoe;
+//   final int currentShoeSlot;
+//   final int userShoeSlots;
 
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
+//   @override
+//   State<ShoeTracker> createState() => _ShoeTrackerState();
+// }
+
+class ShoeTracker extends StatefulWidget {
+  const ShoeTracker({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<ShoeTracker> createState() => _ShoeTrackerState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _ShoeTrackerState extends State<ShoeTracker> {
+  final String _selectedShoe = '';
+  final Object _currentShoe = {};
+  final int _currentShoeSlot = 1;
+  final int _userShoeSlots = 16;
+  final List _userShoes = [];
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  final shoeSlots = <Widget>[];
+
+  void _handleAdjustSlot() {
+    setState(() {});
   }
+
+  void _handleSelectSlot() {}
+
+  void _handleSelectShoe() {}
+
+  void _handleAddShoe() {}
+
+  void _handleRemoveShoe() {}
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    for (var i = 0; i < _userShoeSlots; i++) {
+      shoeSlots.add(
+        SizedBox(
+          width: 100,
+          child: ElevatedButton(
+            onPressed: () {},
+            child: Text("Slot ${i + 1}"),
+            // child: Text("Slot $i + 1"),
+          ),
+        ),
+      );
+    }
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        child: Container(
+          width: 800,
+          height: 600,
+          decoration: BoxDecoration(
+            border: Border.all(
+                width: 4, style: BorderStyle.solid, color: Colors.purple),
+          ),
+          child: Container(
+            color: Colors.blue,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    color: Colors.green,
+                    child: SizedBox(
+                      width: 300,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: Text("ADD SLOT"),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {},
+                            child: Text("REMOVE SLOT"),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 450,
+                    color: Colors.orange,
+                    child: Wrap(
+                      spacing: 16,
+                      runSpacing: 12,
+                      children: shoeSlots,
+                    ),
+                  ),
+                  // Row(
+                  //   children: <Widget>[],
+                  // ),
+                  // // DROPDOWN
+                  // DropdownButton(items: items, onChanged: onChanged),
+                  SizedBox(
+                    width: 300,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: Text("ADD SHOE"),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: Text("REMOVE SHOE"),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // Row(
+                  //   children: <Widget>[],
+                  // ),
+                  Text("$_currentShoe"),
+                  Image.asset(
+                      'lib/assets/images/shoes/adidas_Adizero_Adios_Pro_3.png'),
+                  // Image.asset('lib/assets/images/shoes/$_currentShoe.image'),
+                  // IMAGE
+                ]
+                // children: <Widget>[
+                //   Text(
+                //     "Selected Shoe: $_selectedShoe",
+                //     style: Theme.of(context).textTheme.headlineMedium,
+                //   ),
+                //   Text(
+                //     "User Shoe Slots: $_currentShoe",
+                //     style: Theme.of(context).textTheme.headlineMedium,
+                //   ),
+                //   Text(
+                //     "User Shoe Slots: $_currentShoeSlot",
+                //     style: Theme.of(context).textTheme.headlineMedium,
+                //   ),
+                //   Text(
+                //     "User Shoe Slots: $_userShoeSlots",
+                //     style: Theme.of(context).textTheme.headlineMedium,
+                //   ),
+                // ],
+                ),
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
